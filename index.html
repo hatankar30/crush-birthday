@@ -60,7 +60,24 @@
   </div>
 </div>
 </div>
-<audio src="background_music.mp3" autoplay loop volume="0.9"></audio>
+<audio src="background_music.mp3" loop volume="0.9"></audio>
+  <script>
+    // Wait for the document to be fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+      var audio = document.getElementById('backgroundMusic');
+      audio.play().catch(error => {
+        // Autoplay was prevented
+        // Show a play button to let the user start playback
+        let playButton = document.createElement('button');
+        playButton.innerText = 'Play Music';
+        playButton.onclick = function () {
+          audio.play();
+          playButton.style.display = 'none';
+        };
+        document.body.appendChild(playButton);
+      });
+    });
+                              </script>
   <script src="script1.js"></script>
 
 </body>
